@@ -1,31 +1,34 @@
-import axios from "axios"
-import { useRef, useState, type FormEvent } from "react";
+import axios from "axios";
+import { useRef, useState } from "react";
+import 'flowbite'
+export const AppBar = (props: any) => {
 
-export const EmployeeDetails = (props: any) => {
+    const [name, setname] = useState("rakesh");
+    const [email, setemail] = useState("rakk@gmail.com");
+    const [position, setposition] = useState("rakk");
 
-    const deleteEmp = async () => {
-        await axios.delete(`http://localhost:3000/api/employee/${props.id}`)
+    const closeButton = useRef<any>(null);
+
+    const addEmployee = async (e: any) => {
+        e.preventDefault();
+
+        closeButton.current.click();
+        await axios.post('http://localhost:3000/api/employee', {
+            name,
+            email,
+            position
+        })
         await props.getAllEmp();
     }
 
-        const [name, setname] = useState(props.name);
-        const [email, setemail] = useState(props.email);
-        const [position, setposition] = useState(props.position);
-    
-        const closeButton = useRef<any>(null);
-
 
     return (
-        <div className="flex gap-50">
-            <div>{props.id}</div>
-            <div>{props.name}</div>
-            <div>{props.email}</div>
-            <div>{props.position}</div>
+        <div className='flex justify-around'>
+            <h2>Employee Details</h2>
 
-            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" className="block text-blue-700 hover:bg-blue-800 hover:text-white border border-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" type="button">
-                Edit
+            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" className="block text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+                + Add Employee
             </button>
-            <button type="button" onClick={deleteEmp} className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Delete</button>
 
             <div id="authentication-modal" aria-hidden="true" className="hidden overflow-y-auto backdrop-contrast-75 overflow-x-hidden fixed top-0 right-0 left-0 justify-center w-full md:inset-0 h-full max-h-full">
                 <div className="relative p-4 w-full max-w-md max-h-full">
@@ -45,7 +48,7 @@ export const EmployeeDetails = (props: any) => {
                         </div>
 
                         <div className="p-4 md:p-5">
-                            <form className="space-y-4" action="#">
+                            <form className="space-y-4" action="#" onSubmit={(e) => addEmployee(e)}>
 
                                 <div>
                                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Your name</label>

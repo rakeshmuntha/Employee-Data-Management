@@ -2,6 +2,7 @@ import axios from 'axios'
 import './App.css'
 import { EmployeeDetails } from './components/EmployeeDetails'
 import { useEffect, useState } from 'react';
+import { AppBar } from './components/AppBar';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
     return (
         <>
+            <AppBar getAllEmp={getAllEmp} />
             <div className="flex gap-50">
                 <div>ID</div>
                 <div>Name</div>
