@@ -1,22 +1,55 @@
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import type { employee } from "../types";
 
-export const EmployeeDetails = (props: any) => {
+interface propEmp extends employee {
+    getAllEmp: () => Promise<void>
+}
+
+export const EmployeeDetails = (props: propEmp) => {
     const [isOpen, setIsOpen] = useState(false);
+
     const deleteEmp = async () => {
-        await axios.delete(`http://localhost:3000/api/employee/${props.id}`)
-        await props.getAllEmp();
+
+        try {
+            const promise = axios.delete(`http://localhost:3000/api/employee/${props.id}`);
+
+            toast.promise(promise, {
+                loading: 'Deleting...',
+                success: `Deleted Successfully`,
+            });
+
+            await promise;
+            await props.getAllEmp();
+        }
+
+        catch (error: any) {
+            toast.error(error.message);
+        }
     }
 
     const editEmp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        await axios.put(`http://localhost:3000/api/employee/${props.id}`, {
-            name, email, position
-        })
-
-        await props.getAllEmp();
         setIsOpen(false);
+
+        try {
+            const promise = axios.put(`http://localhost:3000/api/employee/${props.id}`, {
+                name, email, position
+            })
+
+            toast.promise(promise, {
+                loading: 'Adding...',
+                success: `Added Successfully`,
+            });
+
+            await promise;
+            await props.getAllEmp();
+        }
+
+        catch (error: any) {
+            toast.error(error.response.data.message);
+        }
     }
 
     const [name, setname] = useState(props.name);
@@ -46,13 +79,13 @@ export const EmployeeDetails = (props: any) => {
                         <div className="font-semibold text-gray-700 mb-2">Position</div>
                         <div className="text-gray-600 mb-3">{props.position}</div>
                         <div className="flex gap-3">
-                            <button 
+                            <button
                                 type="button" onClick={() => setIsOpen(true)} className="text-blue-700 hover:text-blue-800 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Edit
                             </button>
-                            <button 
-                                type="button"  onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
+                            <button
+                                type="button" onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Delete
                             </button>
@@ -67,12 +100,12 @@ export const EmployeeDetails = (props: any) => {
                             <div className="text-gray-600">{props.id}</div>
                         </div>
                         <div className="flex gap-3">
-                            <button 
+                            <button
                                 type="button" onClick={() => setIsOpen(true)} className="text-blue-700 hover:text-blue-800 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Edit
                             </button>
-                            <button 
+                            <button
                                 type="button" onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Delete
@@ -104,28 +137,28 @@ export const EmployeeDetails = (props: any) => {
 
                         <form onSubmit={(e) => editEmp(e)}>
                             <label htmlFor="name" className="text-sm font-semibold">Emp Name</label>
-                            <input 
-                                type="text" name="name" onChange={(e) => setname(e.target.value)} value={name} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            <input
+                                type="text" name="name" onChange={(e) => setname(e.target.value)} value={name} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
                             <label htmlFor="email" className="text-sm font-semibold">Emp Email</label>
-                            <input 
-                                type="email" onChange={(e) => setemail(e.target.value)} value={email} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            <input
+                                type="email" onChange={(e) => setemail(e.target.value)} value={email} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
                             <label htmlFor="position" className="text-sm font-semibold">Emp Position</label>
-                            <input 
-                                type="text" onChange={(e) => setposition(e.target.value)} value={position} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            <input
+                                type="text" onChange={(e) => setposition(e.target.value)} value={position} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
-                            
+
                             <div className="flex justify-between mt-4 gap-3">
-                                <button 
+                                <button
                                     type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 sm:flex-none"
                                 >
                                     Cancel
                                 </button>
-                                <button 
-                                    type="submit"  className="px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer hover:bg-blue-800 flex-1 sm:flex-none"
+                                <button
+                                    type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer hover:bg-blue-800 flex-1 sm:flex-none"
                                 >
                                     Save
                                 </button>

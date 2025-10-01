@@ -11,6 +11,6 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use('/api', employeeRoutes_1.default);
 app.get('/', (req, res) => {
-    res.json('hi there');
+    res.json('Backend Running');
 });
 app.listen(3000);

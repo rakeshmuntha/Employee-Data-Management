@@ -9,8 +9,7 @@ app.use(cors());
 app.use('/api', employeeRouter);
 
 app.get('/', (req, res) => {
-    res.json('hi there')
+    res.json('Backend Running')
 });
-
 
 app.listen(3000);

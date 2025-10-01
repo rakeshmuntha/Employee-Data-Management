@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/routes/employeeroutes.ts"],"version":"5.9.2"}
+{"root":["./src/index.ts","./src/controller/employeecontroller.ts","./src/middleware/index.ts","./src/routes/employeeroutes.ts"],"version":"5.9.2"}
