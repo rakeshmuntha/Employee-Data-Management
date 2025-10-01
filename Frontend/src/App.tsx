@@ -19,12 +19,6 @@ function App() {
     return (
         <>
             <AppBar getAllEmp={getAllEmp} />
-            <div className="flex gap-50">
-                <div>ID</div>
-                <div>Name</div>
-                <div>Email</div>
-                <div>Position</div>
-            </div>
 
             {data.map((emp: any) => {
                 return <div key={emp.id}>

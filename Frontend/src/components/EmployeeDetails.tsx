@@ -24,35 +24,109 @@ export const EmployeeDetails = (props: any) => {
     const [position, setposition] = useState(props.position);
 
     return (
-        <div className="flex gap-5">
-            <div>{props.id}</div>
-            <div>{props.name}</div>
-            <div>{props.email}</div>
-            <div>{props.position}</div>
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 mb-4">
+            <div className="border border-gray-200 rounded-lg shadow-sm p-4 sm:p-6">
+                <div className="hidden md:grid md:grid-cols-4 md:gap-6">
+                    <div>
+                        <div className="font-semibold text-gray-700 mb-2">ID</div>
+                        <div className="text-gray-600">{props.id}</div>
+                    </div>
 
-            <button type="button" onClick={() => setIsOpen(true)} className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Edit</button>
-            <button type="button" onClick={deleteEmp} className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-700 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Delete</button>
+                    <div>
+                        <div className="font-semibold text-gray-700 mb-2">Name</div>
+                        <div className="text-gray-600">{props.name}</div>
+                    </div>
+
+                    <div>
+                        <div className="font-semibold text-gray-700 mb-2">Email</div>
+                        <div className="text-gray-600 break-words">{props.email}</div>
+                    </div>
+
+                    <div>
+                        <div className="font-semibold text-gray-700 mb-2">Position</div>
+                        <div className="text-gray-600 mb-3">{props.position}</div>
+                        <div className="flex gap-3">
+                            <button 
+                                type="button" onClick={() => setIsOpen(true)} className="text-blue-700 hover:text-blue-800 focus:outline-none font-medium text-sm cursor-pointer"
+                            >
+                                Edit
+                            </button>
+                            <button 
+                                type="button"  onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="md:hidden space-y-3">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <div className="font-semibold text-gray-700 text-sm">ID</div>
+                            <div className="text-gray-600">{props.id}</div>
+                        </div>
+                        <div className="flex gap-3">
+                            <button 
+                                type="button" onClick={() => setIsOpen(true)} className="text-blue-700 hover:text-blue-800 focus:outline-none font-medium text-sm cursor-pointer"
+                            >
+                                Edit
+                            </button>
+                            <button 
+                                type="button" onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="font-semibold text-gray-700 text-sm">Name</div>
+                        <div className="text-gray-600">{props.name}</div>
+                    </div>
+
+                    <div>
+                        <div className="font-semibold text-gray-700 text-sm">Email</div>
+                        <div className="text-gray-600 break-all">{props.email}</div>
+                    </div>
+
+                    <div>
+                        <div className="font-semibold text-gray-700 text-sm">Position</div>
+                        <div className="text-gray-600">{props.position}</div>
+                    </div>
+                </div>
+            </div>
 
             {isOpen && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center">
-                    <div className="bg-white p-10 flex flex-col gap-1 rounded-lg shadow-lg max-w-md w-full">
+                <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center p-4">
+                    <div className="bg-white p-6 sm:p-10 flex flex-col gap-1 rounded-lg shadow-lg max-w-md w-full">
                         <h3 className="text-xl font-semibold mb-4">Edit Employee</h3>
 
                         <form onSubmit={(e) => editEmp(e)}>
-
                             <label htmlFor="name" className="text-sm font-semibold">Emp Name</label>
-                            <input type="text" name="name" onChange={(e) => setname(e.target.value)} value={name} className="border w-full rounded-lg p-2 mb-2" />
+                            <input 
+                                type="text" name="name" onChange={(e) => setname(e.target.value)} value={name} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            />
 
                             <label htmlFor="email" className="text-sm font-semibold">Emp Email</label>
-                            <input type="email" onChange={(e) => setemail(e.target.value)} value={email} className="border w-full p-2 mb-2" />
+                            <input 
+                                type="email" onChange={(e) => setemail(e.target.value)} value={email} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            />
 
-                            <label htmlFor="email" className="text-sm font-semibold">Emp Position</label>
-                            <input type="text" onChange={(e) => setposition(e.target.value)} value={position} className="border w-full p-2 mb-2" />
-                            <div className="flex justify-between mt-4">
-                                <button type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg  cursor-pointer">
+                            <label htmlFor="position" className="text-sm font-semibold">Emp Position</label>
+                            <input 
+                                type="text" onChange={(e) => setposition(e.target.value)} value={position} className="border w-full rounded-lg p-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                            />
+                            
+                            <div className="flex justify-between mt-4 gap-3">
+                                <button 
+                                    type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 sm:flex-none"
+                                >
                                     Cancel
                                 </button>
-                                <button type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-lg  cursor-pointer">
+                                <button 
+                                    type="submit"  className="px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer hover:bg-blue-800 flex-1 sm:flex-none"
+                                >
                                     Save
                                 </button>
                             </div>
