@@ -13,7 +13,7 @@ employeeRouter.get('/employees', getAllEmployees)
 employeeRouter.get('/employee/:id', getEmployeeById)
 
 // update employee details by id
-employeeRouter.put('/employee/:id',checkEmail, updateEmployeeById)
+employeeRouter.put('/employee/:id', updateEmployeeById)
 
 // delete employee by id
 employeeRouter.delete('/employee/:id', deleteEmployeeById)

@@ -14,7 +14,7 @@ employeeRouter.get('/employees', employeeController_1.getAllEmployees);
 // get employee details by id 
 employeeRouter.get('/employee/:id', employeeController_1.getEmployeeById);
 // update employee details by id
-employeeRouter.put('/employee/:id', middleware_1.checkEmail, employeeController_1.updateEmployeeById);
+employeeRouter.put('/employee/:id', employeeController_1.updateEmployeeById);
 // delete employee by id
 employeeRouter.delete('/employee/:id', employeeController_1.deleteEmployeeById);
 exports.default = employeeRouter;

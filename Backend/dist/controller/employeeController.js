@@ -29,7 +29,7 @@ const addEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     catch (e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -48,7 +48,7 @@ const getAllEmployees = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
     catch (e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -71,7 +71,7 @@ const getEmployeeById = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
     }
     catch (e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -100,7 +100,7 @@ const updateEmployeeById = (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
     catch (e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -123,7 +123,7 @@ const deleteEmployeeById = (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
     catch (e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e

@@ -9,9 +9,13 @@ interface propEmp extends employee {
 
 export const EmployeeDetails = (props: propEmp) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDelOpen, setisDelOpen] = useState(false);
 
-    const deleteEmp = async () => {
+    const deleteEmp = async (e: React.FormEvent<HTMLFormElement>) => {
 
+        e.preventDefault();
+        setisDelOpen(false);
+        
         try {
             const promise = axios.delete(`http://localhost:3000/api/employee/${props.id}`);
 
@@ -85,7 +89,7 @@ export const EmployeeDetails = (props: propEmp) => {
                                 Edit
                             </button>
                             <button
-                                type="button" onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
+                                type="button" onClick={() => setisDelOpen(true)} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Delete
                             </button>
@@ -106,7 +110,7 @@ export const EmployeeDetails = (props: propEmp) => {
                                 Edit
                             </button>
                             <button
-                                type="button" onClick={deleteEmp} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
+                                type="button" onClick={() => setisDelOpen(true)} className="text-red-600 hover:text-red-700 focus:outline-none font-medium text-sm cursor-pointer"
                             >
                                 Delete
                             </button>
@@ -153,7 +157,7 @@ export const EmployeeDetails = (props: propEmp) => {
 
                             <div className="flex justify-between mt-4 gap-3">
                                 <button
-                                    type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 sm:flex-none"
+                                    type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg cursor-pointer text-white bg-gray-600 hover:bg-gray-700 flex-1 sm:flex-none"
                                 >
                                     Cancel
                                 </button>
@@ -161,6 +165,32 @@ export const EmployeeDetails = (props: propEmp) => {
                                     type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer hover:bg-blue-800 flex-1 sm:flex-none"
                                 >
                                     Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {isDelOpen && (
+                <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center">
+                    <div className="bg-white p-6 sm:p-7 flex flex-col gap-1 rounded-lg shadow-lg max-w-md w-full">
+
+                        <h3 className="text-xl font-semibold mb-2">Delete Note</h3>
+                        <p className="">Are you sure want to Delete?</p>
+
+                        <form onSubmit={(e) => deleteEmp(e)}>
+
+                            <div className="flex flex-row-reverse mt-4 gap-3">
+                                <button
+                                    type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-lg cursor-pointer hover:bg-blue-800 flex-1 sm:flex-none"
+                                >
+                                    Yes
+                                </button>
+                                <button
+                                    type="button" onClick={() => setisDelOpen(false)} className="px-4 py-2 border rounded-lg text-white bg-gray-600 hover:bg-gray-700 cursor-pointer flex-1 sm:flex-none"
+                                >
+                                    No
                                 </button>
                             </div>
                         </form>

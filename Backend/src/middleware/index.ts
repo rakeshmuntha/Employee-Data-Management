@@ -14,7 +14,7 @@ export const checkEmail = async (req: Request, res: Response, next: NextFunction
         });
 
         if (data) {
-            return res.status(411).json({
+            return res.status(403).json({
                 success: false,
                 message: "Employee with this Email Already Exists"
             })
@@ -24,7 +24,7 @@ export const checkEmail = async (req: Request, res: Response, next: NextFunction
     }
 
     catch (e) {
-        res.status(411);
+        res.status(400);
         return res.json({
             success: false,
             message: e

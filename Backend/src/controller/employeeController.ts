@@ -21,7 +21,7 @@ export const addEmployee = async (req : Request, res: Response) => {
         })
     }
     catch(e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -43,7 +43,7 @@ export const getAllEmployees = async (req : Request, res: Response) => {
     }
     
     catch(e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -69,7 +69,7 @@ export const getEmployeeById =  async (req : Request, res: Response) => {
     }
     
     catch(e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -101,7 +101,7 @@ export const updateEmployeeById = async (req : Request, res: Response) => {
     }
     
     catch(e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e
@@ -127,7 +127,7 @@ export const deleteEmployeeById = async (req : Request, res: Response) => {
     }
     
     catch(e) {
-        res.status(411);
+        res.status(404);
         return res.json({
             success: false,
             message: e

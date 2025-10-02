@@ -21,7 +21,7 @@ const checkEmail = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             }
         });
         if (data) {
-            return res.status(411).json({
+            return res.status(403).json({
                 success: false,
                 message: "Employee with this Email Already Exists"
             });
@@ -29,7 +29,7 @@ const checkEmail = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         next();
     }
     catch (e) {
-        res.status(411);
+        res.status(400);
         return res.json({
             success: false,
             message: e
