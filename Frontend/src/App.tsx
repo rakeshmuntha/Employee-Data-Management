@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 import { AppBar } from './components/AppBar';
 import { Toaster } from 'react-hot-toast'
 import type { employee } from './types';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 function App() {
     const [data, setdata] = useState<employee[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
 
     const getAllEmp = async () => {
-        const res = await axios.get('http://localhost:3000/api/employees');
+        const res = await axios.get(`${backendUrl}/api/employees`);
         setdata(res.data.data);
     }
 

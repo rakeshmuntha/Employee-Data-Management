@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import type { employee } from "../types";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 interface propEmp extends employee {
     getAllEmp: () => Promise<void>
@@ -17,7 +19,7 @@ export const EmployeeDetails = (props: propEmp) => {
         setisDelOpen(false);
         
         try {
-            const promise = axios.delete(`http://localhost:3000/api/employee/${props.id}`);
+            const promise = axios.delete(`${backendUrl}/api/employee/${props.id}`);
 
             toast.promise(promise, {
                 loading: 'Deleting...',
@@ -38,7 +40,7 @@ export const EmployeeDetails = (props: propEmp) => {
         setIsOpen(false);
 
         try {
-            const promise = axios.put(`http://localhost:3000/api/employee/${props.id}`, {
+            const promise = axios.put(`${backendUrl}/api/employee/${props.id}`, {
                 name, email, position
             })
 

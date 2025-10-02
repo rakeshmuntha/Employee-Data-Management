@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import type { employee } from "../types";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 interface propEmp {
     data: employee[];
@@ -22,7 +23,7 @@ export const AppBar = (props: propEmp) => {
         setIsOpen(false);
 
         try {
-            const promise = axios.post(`http://localhost:3000/api/employee`, {
+            const promise = axios.post(`${backendUrl}/api/employee`, {
                 name,
                 email,
                 position,
