@@ -45,8 +45,8 @@ export const EmployeeDetails = (props: propEmp) => {
             })
 
             toast.promise(promise, {
-                loading: 'Adding...',
-                success: `Added Successfully`,
+                loading: 'Upadating...',
+                success: `Updated Successfully`,
             });
 
             await promise;
