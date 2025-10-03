@@ -12,6 +12,7 @@ The Employee Management System is a web-based application designed to manage emp
 - **Responsive UI**: Clean and user-friendly design built with Tailwind CSS.  
 - **CRUD Operations**: Backend APIs connected with MySQL for persistent storage.  
 - **Notifications**: Real-time success/error messages using **react-hot-toast**.  
+- **Auto-pooling**: When the application used in multiple devices the changes done on one device will reflect on other device without refreshing the page.
 
 ## **Technologies Used**
 
