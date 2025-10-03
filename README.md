@@ -1,5 +1,8 @@
 # **Employee Management System**
 
+**Live Demo**:  
+   🔗 [Live Link](https://employee-data-management-34mhl7jth-rakeshs-projects-82057bd1.vercel.app/)
+
 ## **Project Overview**
 
 The Employee Management System is a web-based application designed to manage employee records efficiently. It provides features for adding, searching, and managing employee details. The project is built using **React (Frontend)** and **Node.js + Express + MySQL (Backend)** with **Axios** for API communication and **Toast notifications** for user feedback. It demonstrates CRUD operations, form handling, and modal integration.
