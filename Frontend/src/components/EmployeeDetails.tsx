@@ -39,6 +39,12 @@ export const EmployeeDetails = (props: propEmp) => {
         e.preventDefault();
         setIsOpen(false);
 
+        if(email !== props.email) {
+            toast.error("You can't change the Email");
+            closeButton();
+            return;
+        }
+
         try {
             const promise = axios.put(`${backendUrl}/api/employee/${props.id}`, {
                 name, email, position
