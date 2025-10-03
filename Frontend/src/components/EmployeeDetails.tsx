@@ -58,6 +58,13 @@ export const EmployeeDetails = (props: propEmp) => {
         }
     }
 
+    const closeButton = () => {
+        setIsOpen(false);
+        setname(props.name);
+        setemail(props.email);
+        setposition(props.position);
+    }
+
     const [name, setname] = useState(props.name);
     const [email, setemail] = useState(props.email);
     const [position, setposition] = useState(props.position);
@@ -159,7 +166,7 @@ export const EmployeeDetails = (props: propEmp) => {
 
                             <div className="flex justify-between mt-4 gap-3">
                                 <button
-                                    type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border rounded-lg cursor-pointer text-white bg-gray-600 hover:bg-gray-700 flex-1 sm:flex-none"
+                                    type="button" onClick={() => closeButton()} className="px-4 py-2 border rounded-lg cursor-pointer text-white bg-gray-600 hover:bg-gray-700 flex-1 sm:flex-none"
                                 >
                                     Cancel
                                 </button>

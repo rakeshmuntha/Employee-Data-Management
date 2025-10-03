@@ -14,9 +14,9 @@ export const AppBar = (props: propEmp) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchInput, setSearchInput] = useState("");
 
-    const [name, setname] = useState("Rakk");
-    const [email, setemail] = useState("rakk@gmail.com");
-    const [position, setposition] = useState("ceo");
+    const [name, setname] = useState("");
+    const [email, setemail] = useState("");
+    const [position, setposition] = useState("");
 
     const addEmp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -42,6 +42,13 @@ export const AppBar = (props: propEmp) => {
             toast.error(msg);
         }
     };
+
+    const closeButton = () => {
+        setIsOpen(false);
+        setname("");
+        setemail("");
+        setposition("");
+    }
 
     // call parent on each change
     const handleSearchChange = (val: string) => {
@@ -106,7 +113,7 @@ export const AppBar = (props: propEmp) => {
                             <input type="text" onChange={(e) => setposition(e.target.value)} value={position} className="border rounded-lg w-full p-2" required />
 
                             <div className="flex justify-between mt-4">
-                                <button type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 border cursor-pointer text-white bg-gray-600 hover:bg-gray-700  rounded-lg">
+                                <button type="button" onClick={() => closeButton()} className="px-4 py-2 border cursor-pointer text-white bg-gray-600 hover:bg-gray-700  rounded-lg">
                                     Cancel
                                 </button>
                                 <button type="submit" className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white cursor-pointer rounded-lg">
